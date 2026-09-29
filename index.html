@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main d-flex justify-content-center align-items-center">
+      <div class="card text-bg-light mb-3">
+        <div
+          class="card-header d-flex justify-content-center align-items-center"
+        >
+          <h1 class="fs-4">Translator</h1>
+        </div>
+
+        <div class="card-body d-flex flex-column gap-3">
+          <div class="text-content d-flex h-50 justify-content-between gap-3">
+            <textarea class="form-control " id="input"></textarea>
+            <textarea
+              class="form-control "
+              id="output"
+              disabled
+            ></textarea>
+          </div>
+          <div class="select d-flex  justify-content-evenly">
+            <select class="" id="fromLang">
+              <option value="default" selected>from</option>
+              
+            </select>
+            <select id="toLang">
+              <option value="default" selected>To</option>
+              
+            </select>
+          </div>
+          <div class="button d-flex justify-content-center">
+            <button type="button" class="btn btn-dark" id="btn">
+              Translate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

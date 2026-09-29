@@ -1,0 +1,26 @@
+.main {
+  background: linear-gradient(
+    15deg,
+    #0ee6dd 0%,
+    #43dddf 11.111%,
+    #54d0e2 22.222%,
+    #35c2e4 33.333%,
+    #00b2e7 44.444%,
+    #00a0e9 55.556%,
+    #008eec 66.667%,
+    #007bee 77.778%,
+    #2669f0 88.889%,
+    #5057f3 100%
+  );
+  height: 100vh;
+}
+.main .card {
+  width: 50vw;
+ 
+}
+
+@media (max-width: 800px) {
+  .main .card {
+    width: 75%;
+  }
+}
