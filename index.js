@@ -104,7 +104,6 @@ const countries = {
 };
 
 async function loadData() {
-    
   try {
     const res = await fetch(
       `https://api.mymemory.translated.net/get?q=${textAreaOne.value}&langpair=${selectOne.value}|${selectTwo.value}`,
@@ -112,6 +111,7 @@ async function loadData() {
     const data = await res.json();
     textAreaTwo.value = await data.responseData.translatedText;
   } catch (error) {
+    textAreaTwo.value = "Error fetching Data.";
     console.error(error);
   }
 }
@@ -124,16 +124,26 @@ function fillSelect(select) {
     select.appendChild(option);
   });
 }
-fillSelect(selectOne);
-fillSelect(selectTwo);
+document.addEventListener("DOMContentLoaded", () => {
+  fillSelect(selectOne);
+  fillSelect(selectTwo);
+});
 
-
-btn.addEventListener("click", () => {
+async function translate() {
   const text = textAreaOne.value;
 
   if (text === "") {
     textAreaTwo.value = "";
+  } else if (selectOne.value === "default" || selectTwo.value === "default") {
+    textAreaTwo.value = "Please select both languages.";
   } else if (selectOne.value === selectTwo.value) {
     textAreaTwo.value = text;
-  } else loadData(text);
+  } else {
+    textAreaTwo.value = "Loading...";
+    await loadData(text);
+  }
+}
+
+btn.addEventListener("click", () => {
+  translate();
 });
