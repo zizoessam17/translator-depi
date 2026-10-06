@@ -133,7 +133,7 @@ async function translate() {
   const text = textAreaOne.value;
 
   if (text === "") {
-    textAreaTwo.value = "";
+    textAreaTwo.value = "Enter text to translate.";
   } else if (selectOne.value === "default" || selectTwo.value === "default") {
     textAreaTwo.value = "Please select both languages.";
   } else if (selectOne.value === selectTwo.value) {
