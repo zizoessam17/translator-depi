@@ -109,7 +109,7 @@ async function loadData() {
       `https://api.mymemory.translated.net/get?q=${textAreaOne.value}&langpair=${selectOne.value}|${selectTwo.value}`,
     );
     const data = await res.json();
-    textAreaTwo.value = await data.responseData.translatedText;
+    textAreaTwo.value = data.responseData.translatedText;
   } catch (error) {
     textAreaTwo.value = "Error fetching Data.";
     console.error(error);
@@ -117,11 +117,8 @@ async function loadData() {
 }
 
 function fillSelect(select) {
-  Object.keys(countries).forEach((code) => {
-    const option = document.createElement("option");
-    option.value = code;
-    option.textContent = countries[code];
-    select.appendChild(option);
+  Object.entries(countries).forEach(([code, name]) => {
+    select.innerHTML += `<option value="${code}">${name}</option>`;
   });
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -130,18 +127,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function translate() {
-  const text = textAreaOne.value;
+  const text = textAreaOne.value.trim();
 
-  if (text === "") {
-    textAreaTwo.value = "Enter text to translate.";
-  } else if (selectOne.value === "default" || selectTwo.value === "default") {
-    textAreaTwo.value = "Please select both languages.";
-  } else if (selectOne.value === selectTwo.value) {
-    textAreaTwo.value = text;
+  if (
+    selectOne.value === "default" ||
+    selectTwo.value === "default" ||
+    selectOne.value === selectTwo.value ||
+    text === ""
+  ) {
+    textAreaTwo.value = "Please Enter text and select both languages.";
   } else {
     textAreaTwo.value = "Loading...";
     await loadData(text);
   }
+  
 }
 
 btn.addEventListener("click", () => {
